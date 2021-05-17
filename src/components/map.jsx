@@ -7,6 +7,8 @@ const MapInterface = () => {
 
     return (
         <div class="map-container">
+            <h1>Tarea 3 - IIC3103</h1>
+            <h3>Live Map</h3>
             <MapContainer center={[51.505, -0.09]} zoom={4} scrollWheelZoom={true}>
                 <TileLayer
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
