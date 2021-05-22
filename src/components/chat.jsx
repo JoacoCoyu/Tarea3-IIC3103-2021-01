@@ -1,30 +1,42 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { useEffect, useState } from "react"
 import '../style/chat.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import TextField from "@material-ui/core/TextField"
+import {Popup} from "reactjs-popup";
 import io from "socket.io-client"
 
 
 const ChatInterface = () => {
-
+    const [ nickname, setNickname ] = useState("Test Pilot")
     const [ state, setState ] = useState({ name: "", message: "" })
     const [ chat, setChat ] = useState([])
     const socket = io("wss://tarea-3-websocket.2021-1.tallerdeintegracion.cl",{path:"/flights"});
 
     useEffect(() => {
         socket.on("CHAT", (data) => {
+            //console.log(data)
             setChat([ ...chat, data ])
-            //console.log(chat)
+            console.log(chat)
+            
           });
     }, []);
 
+    const onNicknameChange = (e) => {
+		setNickname(e.target.value)
+        console.log(state)
+	}
+
+    const onNicknameSubmit = (e) => {
+        console.log("nuevo nickname", e.target.value)
+		setNickname(e.target.value)
+	}
 
     const onTextChange = (e) => {
-		setState({name:"piloto1", message: e.target.value})
-        //console.log(e.target.value)
+		setState({name: nickname, message: e.target.value})
+        console.log(state)
 	}
 
     const onMessageSubmit = (e) => {
+        console.log("mensaje enviado: ", state)
 		const { name, message } = state
 		socket.emit("CHAT", {name, message})
 		e.preventDefault()
@@ -43,20 +55,44 @@ const ChatInterface = () => {
 
     return (
         <div className="chat-container">
-            <div className="messages-container">
+            <div className="other-msg-container">
                 {renderChat()}
             </div>
-            
-            <form
-            onSubmit={onMessageSubmit}>
-                <div className="input-container">
-                    <div className="input-group flex-nowrap">
-                        <input type="text" className="form-control" placeholder="Write a message ..." 
+
+            <div className="input-container">
+                <form
+                className="form-nickname"
+                onSubmit={onNicknameSubmit}>
+                    <div className="nickname-container">
+                        <input type="text" className="form-control" placeholder="Choose a nickname" 
                         aria-label="Username" aria-describedby="addon-wrapping"
-                        value={state.message} onChange={onTextChange} />
+                        value={nickname} onChange={onNicknameChange} />
                     </div>
-                </div>
-            </form>
+                </form>
+
+                <Popup
+                    trigger={<div className="nickname-button-container"><button 
+                    type="submit" 
+                    className="btn btn-primary mb-3">Set Nickname</button></div>}
+                    position="top"
+                    closeOnDocumentClick>
+                    <div className="popup-nickname-container">
+                        New nickname has been set correctly
+                    </div>
+                </Popup>
+
+                <form
+                className="form-message"
+                onSubmit={onMessageSubmit}>
+                    <div className="messages-container">
+                        <div className="input-group flex-nowrap">
+                            <input type="text" className="form-control" placeholder="Write a message ..." 
+                            aria-label="Username" aria-describedby="addon-wrapping"
+                            value={state.message} onChange={onTextChange} />
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     )
 }
@@ -64,23 +100,12 @@ const ChatInterface = () => {
 export default ChatInterface;
 
 
-{/* <div className="chat-container">
-
-<div className="messages-container">
-    <h3>mensajes</h3>
-</div>
-    <div className="input-container">
-        <div className="input-group flex-nowrap">
-            <input type="text" className="form-control" placeholder="Write a message ..." 
-            aria-label="Username" aria-describedby="addon-wrapping"
-            value={state.message} onChange={onTextChange}} />
-        </div>
+{/* <Popup
+    trigger={<button className="btn btn-warning quote-btn">See Quotes</button>}
+    position="top"
+    closeOnDocumentClick>
+    <div className="quote-container">
+        New nickname has been set correctly
     </div>
-
-    <div className="buttom-container">
-        <button 
-        type="submit" 
-        className="btn btn-primary mb-3">Send Message</button>
-    </div>
-</div> */}
+    </Popup> */}
 
