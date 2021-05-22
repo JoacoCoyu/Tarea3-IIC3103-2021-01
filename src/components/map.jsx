@@ -9,10 +9,10 @@ const MapInterface = () => {
     const socket = io("wss://tarea-3-websocket.2021-1.tallerdeintegracion.cl",{path:"/flights"});
 
     useEffect(() => {
-        socket.on("POSITION", (data) => {
-            //console.log(data)
-            console.log("datos vuelos"); // true
-          });
+        // socket.on("POSITION", (data) => {
+        //     //console.log(data)
+        //     console.log("datos vuelos"); // true
+        //   });
           
     });
 

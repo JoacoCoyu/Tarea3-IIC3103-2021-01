@@ -14,11 +14,11 @@
 }
 
 .input-container {
-  width: 87%;
+  width: 100%;
   overflow: auto;
   position: relative;
   top: -10%;
-  margin-top: 2.5%;
+  margin-top: 0.5%;
 }
 
 /* .chat-form {
@@ -33,4 +33,7 @@
   height: fit-content;
   top: -27.5%;
   left: 87.5%;
+}
+
+.msg-container {
 }
