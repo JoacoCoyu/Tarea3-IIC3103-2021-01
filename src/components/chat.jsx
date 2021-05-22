@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react"
 import '../style/chat.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-//import TextField from "@material-ui/core/TextField"
 import io from "socket.io-client"
 
 
