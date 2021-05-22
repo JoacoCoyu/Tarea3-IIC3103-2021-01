@@ -11,13 +11,10 @@ const ChatInterface = () => {
     const [ chat, setChat ] = useState([])
     const socket = io("wss://tarea-3-websocket.2021-1.tallerdeintegracion.cl",{path:"/flights"});
 
-
     useEffect(() => {
-        //console.log(state)
         socket.on("CHAT", (data) => {
-            //console.log(data)
             setChat([ ...chat, data ])
-            console.log(chat)
+            //console.log(chat)
           });
     }, []);
 
@@ -37,9 +34,9 @@ const ChatInterface = () => {
     const renderChat = () => {
 		return chat.map(msg_data => (
 			<div className="msg-container">
-				<h4>
-                [{Date(msg_data["date"])}] {msg_data["name"]}: {msg_data["message"]}
-				</h4>
+				<p>
+                [{String(Date(msg_data["date"])).slice(0, String(Date(msg_data["date"])).length-25)}] {msg_data["name"]}: {msg_data["message"]}
+				</p>
 			</div>
 		))
 	}
@@ -49,6 +46,7 @@ const ChatInterface = () => {
             <div className="messages-container">
                 {renderChat()}
             </div>
+            
             <form
             onSubmit={onMessageSubmit}>
                 <div className="input-container">

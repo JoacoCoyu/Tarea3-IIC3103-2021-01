@@ -9,6 +9,7 @@
   position: relative;
   width: 100%;
   height: 27vh;
+  overflow: auto;
   margin-top: 0.5%;
   background-color: #ebebeb;
 }
@@ -33,7 +34,4 @@
   height: fit-content;
   top: -27.5%;
   left: 87.5%;
-}
-
-.msg-container {
 }
