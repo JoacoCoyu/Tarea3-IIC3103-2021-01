@@ -13,10 +13,13 @@ const ChatInterface = () => {
 
     useEffect(() => {
         socket.on("CHAT", (data) => {
-            //console.log(data)
-            setChat([ ...chat, data ])
-            console.log(chat)
-            
+            if (data) {
+                const new_chat = chat
+                const new_msgs = [data]
+                new_msgs.forEach(msg => 
+                    new_chat.push(msg))
+                setChat(new_chat)
+            }
           });
     }, []);
 
@@ -98,14 +101,4 @@ const ChatInterface = () => {
 }
 
 export default ChatInterface;
-
-
-{/* <Popup
-    trigger={<button className="btn btn-warning quote-btn">See Quotes</button>}
-    position="top"
-    closeOnDocumentClick>
-    <div className="quote-container">
-        New nickname has been set correctly
-    </div>
-    </Popup> */}
 

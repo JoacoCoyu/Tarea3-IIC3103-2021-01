@@ -12,8 +12,6 @@ const FlightsInterface = () => {
     const socket = io("wss://tarea-3-websocket.2021-1.tallerdeintegracion.cl",{path:"/flights"});
 
     useEffect(() => {
-        console.log("hola dentro de flights")
-
         socket.emit("FLIGHTS")
 
         socket.on("FLIGHTS", (data) => {
