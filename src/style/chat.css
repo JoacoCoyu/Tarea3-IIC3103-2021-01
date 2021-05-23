@@ -1,0 +1,61 @@
+/* CHAT Y OTRO MENSAJE */
+
+.chat-container {
+  width: 67.5%;
+  height: 30vh;
+  left: 5%;
+  position: relative;
+}
+
+.other-msg-container {
+  position: relative;
+  width: 100%;
+  height: 27vh;
+  overflow: auto;
+  margin-top: 0.5%;
+  background-color: #ebebeb;
+}
+
+.msg-container {
+  margin-left: 0.7%;
+  margin-bottom: 0.5%;
+  margin-top: 0.5%;
+  padding: 0.4%;
+  background-color: #daf7a6;
+  width: fit-content;
+  border-radius: 5px;
+}
+
+/* INPUTS NICKNAME Y MENSAJE */
+
+.input-container {
+  margin-top: 0.5%;
+  display: flex;
+  flex-direction: row;
+}
+
+.messages-container {
+  width: 340%;
+  overflow: auto;
+  position: relative;
+  margin-left: 2%;
+}
+
+.form-nickname {
+  height: fit-content;
+}
+
+.form-message {
+  height: fit-content;
+}
+
+.nickname-button-container {
+  margin-left: 0.4%;
+}
+
+.popup-nickname-container {
+  background-color: white;
+  border-radius: 5px;
+  padding: 1%;
+  font-size: 0.9vw;
+}

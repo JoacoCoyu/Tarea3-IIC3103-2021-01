@@ -1,0 +1,12 @@
+/* MAP */
+
+.leaflet-container {
+  width: 90%;
+  height: 52vh;
+}
+
+.map-container {
+  left: 5%;
+  position: relative;
+  width: 75%;
+}
