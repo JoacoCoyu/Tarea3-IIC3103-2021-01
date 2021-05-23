@@ -91,6 +91,7 @@ const MapInterface = () => {
             // </Marker>
 
         const redOptions = { color: 'red' }
+        const polygonPosition = []
         return posList.map(flight => (
             
             <CircleMarker center={flight["position"]} pathOptions={redOptions} radius={20}>
