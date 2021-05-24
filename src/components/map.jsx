@@ -3,7 +3,6 @@ import '../style/map.css';
 import 'leaflet/dist/leaflet.css'
 import { MapContainer, TileLayer, CircleMarker, Popup, Polyline } from 'react-leaflet';
 import io from "socket.io-client"
-r
 
 const checkInArray = (array, element) => {
     var response = false
