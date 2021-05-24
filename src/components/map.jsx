@@ -1,16 +1,9 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { useEffect, useState } from "react"
 import '../style/map.css';
 import 'leaflet/dist/leaflet.css'
-import { MapContainer, TileLayer, CircleMarker, Marker, Popup, Polyline } from 'react-leaflet';
+import { MapContainer, TileLayer, CircleMarker, Popup, Polyline } from 'react-leaflet';
 import io from "socket.io-client"
-import L from 'leaflet';
-
-
-// const iconAirplane = new L.Icon({
-//     iconUrl: require('../img/airplane_icon.png'),
-//     iconSize: [35, 40],
-//     className: 'leaflet-div-icon'
-// });
+r
 
 const checkInArray = (array, element) => {
     var response = false
@@ -47,8 +40,6 @@ const MapInterface = () => {
 
     const renderAirplanes = (flight) => {
         if(flight){
-            //console.log(flight)
-            //fruits.includes("Mango")
             var flightInclude = checkInArray(codeList, flight["code"])
             if(!flightInclude) {
                 const newCodeList = codeList
@@ -77,9 +68,6 @@ const MapInterface = () => {
                 })
             }
         }
-        //console.log(posList)
-        
-
         // <Marker
             //     position={[-36.276456967222224, -63.540694109444445]}
             //     icon={ iconAirplane }
@@ -89,12 +77,9 @@ const MapInterface = () => {
             //         Happy flight
             //     </Popup>
             // </Marker>
-
-        const redOptions = { color: 'red' }
-        const polygonPosition = []
+        const colorOptions = { color: 'lime' }
         return posList.map(flight => (
-            
-            <CircleMarker center={flight["position"]} pathOptions={redOptions} radius={20}>
+            <CircleMarker center={flight["position"]} pathOptions={colorOptions} radius={15}>
                 <Popup>
                     {flight["code"]}
                 </Popup>
@@ -103,8 +88,9 @@ const MapInterface = () => {
     }
 
     const renderLines = () => {
-        const colorOptions = [{color: 'lime'}, { color: 'purple' }, { color: 'red' }, { color: 'blue' }]
 
+        //console.log(flights)
+        const colorOptions = [{color: 'lime'}, { color: 'purple' }, { color: 'red' }, { color: 'blue' }]
         return flights.map((flight_data, index) =>(
             <Polyline pathOptions={colorOptions[index]} positions={[flight_data["origin"], flight_data["destination"]]} />
         ))
@@ -114,7 +100,8 @@ const MapInterface = () => {
         <div className="map-container">
             <h1>Tarea 3 - IIC3103</h1>
             <h3>Live Map</h3>
-            <MapContainer center={[51.505, -0.09]} zoom={2} scrollWheelZoom={true}>
+            <MapContainer center={[-34.82264, -58.533321]} zoom={4} scrollWheelZoom={true}>
+
                 <TileLayer
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

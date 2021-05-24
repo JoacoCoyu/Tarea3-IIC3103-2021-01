@@ -13,28 +13,32 @@ const ChatInterface = () => {
 
     useEffect(() => {
         socket.on("CHAT", (data) => {
-            if (data) {
-                const new_chat = chat
-                const new_msgs = [data]
-                new_msgs.forEach(msg => 
-                    new_chat.push(msg))
-                setChat(new_chat)
-            }
+
+                setChat(chat => [ ...chat, data])
+                //console.log(chat)
+            //}
           });
-    }, []);
+          return () => socket.disconnect()
+        }, 
+    []);
 
     const onNicknameChange = (e) => {
 		setNickname(e.target.value)
-        console.log(state)
+        //console.log(state)
 	}
 
     const onNicknameSubmit = (e) => {
-        console.log("nuevo nickname", e.target.value)
+        //console.log("nuevo nickname", e.target.value)
+        e.preventDefault()
+
 		setNickname(e.target.value)
 	}
 
     const onTextChange = (e) => {
 		setState({name: nickname, message: e.target.value})
+
+        //setState({ ...state, message: e.target.value })
+
         console.log(state)
 	}
 
@@ -47,8 +51,10 @@ const ChatInterface = () => {
 	}
 
     const renderChat = () => {
-		return chat.map(msg_data => (
-			<div className="msg-container">
+
+		return chat.map((msg_data, index) => (
+			<div key={index} className="msg-container">
+
 				<p>
                 [{String(Date(msg_data["date"])).slice(0, String(Date(msg_data["date"])).length-25)}] {msg_data["name"]}: {msg_data["message"]}
 				</p>
