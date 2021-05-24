@@ -12,12 +12,13 @@ const ChatInterface = () => {
     const socket = io("wss://tarea-3-websocket.2021-1.tallerdeintegracion.cl",{path:"/flights"});
 
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         socket.on("CHAT", (data) => {
                 setChat(chat => [ ...chat, data])
                 //console.log(chat)
             //}
           });
-          //return () => socket.disconnect()
+          return () => socket.disconnect()
         }, 
     []);
 
