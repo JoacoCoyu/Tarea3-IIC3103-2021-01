@@ -3,6 +3,7 @@ import '../style/map.css';
 import 'leaflet/dist/leaflet.css'
 import { MapContainer, TileLayer, CircleMarker, Popup, Polyline } from 'react-leaflet';
 import io from "socket.io-client"
+r
 
 const checkInArray = (array, element) => {
     var response = false
@@ -76,7 +77,6 @@ const MapInterface = () => {
             //         Happy flight
             //     </Popup>
             // </Marker>
-
         const colorOptions = { color: 'lime' }
         return posList.map(flight => (
             <CircleMarker center={flight["position"]} pathOptions={colorOptions} radius={15}>
@@ -88,7 +88,8 @@ const MapInterface = () => {
     }
 
     const renderLines = () => {
-        console.log(flights)
+
+        //console.log(flights)
         const colorOptions = [{color: 'lime'}, { color: 'purple' }, { color: 'red' }, { color: 'blue' }]
         return flights.map((flight_data, index) =>(
             <Polyline pathOptions={colorOptions[index]} positions={[flight_data["origin"], flight_data["destination"]]} />
@@ -100,6 +101,7 @@ const MapInterface = () => {
             <h1>Tarea 3 - IIC3103</h1>
             <h3>Live Map</h3>
             <MapContainer center={[-34.82264, -58.533321]} zoom={4} scrollWheelZoom={true}>
+
                 <TileLayer
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

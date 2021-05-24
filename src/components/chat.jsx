@@ -13,6 +13,7 @@ const ChatInterface = () => {
 
     useEffect(() => {
         socket.on("CHAT", (data) => {
+
                 setChat(chat => [ ...chat, data])
                 //console.log(chat)
             //}
@@ -29,12 +30,15 @@ const ChatInterface = () => {
     const onNicknameSubmit = (e) => {
         //console.log("nuevo nickname", e.target.value)
         e.preventDefault()
+
 		setNickname(e.target.value)
 	}
 
     const onTextChange = (e) => {
 		setState({name: nickname, message: e.target.value})
+
         //setState({ ...state, message: e.target.value })
+
         console.log(state)
 	}
 
@@ -47,8 +51,10 @@ const ChatInterface = () => {
 	}
 
     const renderChat = () => {
+
 		return chat.map((msg_data, index) => (
 			<div key={index} className="msg-container">
+
 				<p>
                 [{String(Date(msg_data["date"])).slice(0, String(Date(msg_data["date"])).length-25)}] {msg_data["name"]}: {msg_data["message"]}
 				</p>
