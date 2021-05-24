@@ -88,8 +88,6 @@ const MapInterface = () => {
     }
 
     const renderLines = () => {
-
-        //console.log(flights)
         const colorOptions = [{color: 'lime'}, { color: 'purple' }, { color: 'red' }, { color: 'blue' }]
         return flights.map((flight_data, index) =>(
             <Polyline pathOptions={colorOptions[index]} positions={[flight_data["origin"], flight_data["destination"]]} />
