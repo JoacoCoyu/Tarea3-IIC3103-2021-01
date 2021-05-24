@@ -17,7 +17,7 @@ const ChatInterface = () => {
                 //console.log(chat)
             //}
           });
-          return () => socket.disconnect()
+          //return () => socket.disconnect()
         }, 
     []);
 

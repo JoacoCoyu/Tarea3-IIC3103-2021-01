@@ -7,7 +7,7 @@ import io from "socket.io-client"
 const checkInArray = (array, element) => {
     var response = false
     for (var i = 0; i < array.length; i++) {
-        if(array[i] == element) {
+        if(array[i] === element) {
             response = true
         }
       }
@@ -52,8 +52,8 @@ const MapInterface = () => {
 
             else {
                 posList.forEach(pos => {
-                    if(pos["code"] == flight["code"]) {
-                        if(pos["position"] == flight["position"]) {
+                    if(pos["code"] === flight["code"]) {
+                        if(pos["position"] === flight["position"]) {
                             const index = posList.indexOf(pos);
                             if (index > -1) {
                                 posList.splice(index, 1);
